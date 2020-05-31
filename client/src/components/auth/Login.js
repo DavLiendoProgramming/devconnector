@@ -3,8 +3,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
-// Adri auxilio
-const Login = ({ login, isAuthetincated }) => {
+
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     password: '',
     email: '',
@@ -12,8 +12,7 @@ const Login = ({ login, isAuthetincated }) => {
   const { password, email } = formData;
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  //Adri aqui esta el onSubmit, todo funciona bien, pero es como si no
-  // le entraran argumentos a la funcion
+
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password, 'hi, im on submit');
@@ -21,9 +20,7 @@ const Login = ({ login, isAuthetincated }) => {
     login(email, password);
   };
 
-  //Redirection when logged
-
-  if (isAuthetincated) {
+  if (isAuthenticated) {
     return <Redirect to="/dashboard" />;
   }
 
@@ -63,7 +60,7 @@ const Login = ({ login, isAuthetincated }) => {
 };
 
 const mapStateToProps = (state) => ({
-  isAuthetincated: state.auth.isAuthetincated,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 Login.propTypes = {
