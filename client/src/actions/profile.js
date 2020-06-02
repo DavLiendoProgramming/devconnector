@@ -16,6 +16,7 @@ import {
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');
+    console.log('him im /actions/profile', res.data);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -55,11 +56,11 @@ export const getProfiles = () => async (dispatch) => {
 
 //GET PROFILES BY ID
 
-export const getProfileByID = (userId) => async (dispatch) => {
+export const getProfileById = (userId) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
-
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
+    console.log(res.data, 'hi im data when getting profile');
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -258,7 +259,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = (id) => async (dispatch) => {
   if (window.confirm('Are you sure? This action can not be undone!')) {
     try {
-      const res = await axios.delete(`/api/profile`);
+      await axios.delete(`/api/profile`);
 
       dispatch({
         type: CLEAR_PROFILE,
