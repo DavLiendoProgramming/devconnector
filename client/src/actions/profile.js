@@ -16,7 +16,6 @@ import {
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');
-    console.log('him im /actions/profile', res.data);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -60,7 +59,6 @@ export const getProfileById = (userId) => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
-    console.log(res.data, 'hi im data when getting profile');
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -79,7 +77,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 //GET GITHUB REPOS
 
 export const getGithubRepos = (username) => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: GET_REPOS });
 
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
