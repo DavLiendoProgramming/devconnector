@@ -57,7 +57,22 @@ const EditProfile = ({
       youtube: loading || !profile.youtube ? '' : profile.youtube,
       instagram: loading || !profile.loading ? '' : profile.company,
     });
-  }, [loading, getCurrentProfile]);
+  }, [
+    loading,
+    getCurrentProfile,
+    profile.bio,
+    profile.company,
+    profile.githubusername,
+    profile.facebook,
+    profile.linkedin,
+    profile.loading,
+    profile.location,
+    profile.status,
+    profile.skills,
+    profile.twitter,
+    profile.website,
+    profile.youtube,
+  ]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });

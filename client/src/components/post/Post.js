@@ -12,8 +12,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
   console.log(post, 'hi im post at post/Post');
   useEffect(() => {
     getPost(match.params.id);
-    console.log(post, 'hi im Post getpost result');
-  }, [getPost]);
+  }, [getPost, match.params.id]);
   return loading || post === null ? (
     <Spinner />
   ) : (
